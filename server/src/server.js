@@ -1,0 +1,35 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable no-console */
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
+const db = require('./models');
+
+const app = express();
+require('dotenv').config();
+
+/** MIDDLEWARE */
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/** MAIN ROUTE */
+const routesDir = path.join(__dirname, 'routes');
+fs.readdirSync(routesDir).map((r) => {
+  app.use('/api', require(`${routesDir}/${r}`));
+});
+
+/** CONNECT TO DB AND RUN SERVER */
+const PORT = process.env.PORT || 5000;
+
+db.sequelize.authenticate().then(async () => {
+  try {
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
