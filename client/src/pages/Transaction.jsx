@@ -1,16 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import ListItem from '../components/ListItem'
 import { FaUser } from 'react-icons/fa'
 import Modal from './../components/Modal'
 import Toast from '../components/ToastMessage'
+import { useDispatch, useSelector } from 'react-redux'
+import { asyncGetProducts } from '../states/products/action'
 
 const Transaction = () => {
-  const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7])
+  const { products = [] } = useSelector((state) => state)
   const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(asyncGetProducts())
+  }, [dispatch])
 
   const handleSaveBill = () => {
     setSuccess(true);
+  }
+
+  const handleClickCard = () => {
+    alert('you click me')
   }
 
   return (
@@ -21,9 +33,9 @@ const Transaction = () => {
         <div className='row'>
           <div className='col-md-8'>
             <div className='row row-cols-1 row-cols-md-3 g-5 mb-2'>
-              {data.map(i => (
-                <div className='col' key={i}>
-                  <Card />
+              {products.map((product)=> (
+                <div className='col' style={{ cursor: 'pointer'}} key={product.id}>
+                  <Card { ...product } handleOnClick={handleClickCard} />
                 </div>
               ))}
             </div>

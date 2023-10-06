@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaPlus } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { asyncGetProducts } from '../states/products/action'
 
 const Food = () => {
+  const { products = [] } = useSelector(state => state)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(asyncGetProducts())
+  }, [dispatch])
 
   return (
     <section>
@@ -14,7 +22,7 @@ const Food = () => {
           className='btn btn-primary btn-small'
           onClick={() => navigate('/add-food')}
         >
-         <FaPlus className='me-2 mb-1' />
+          <FaPlus className='me-2 mb-1' />
           Tambah Menu
         </button>
         <div className='container mt-4'>
@@ -40,30 +48,16 @@ const Food = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th className='text-center'>1</th>
-                <td>Sate Ayam</td>
-                <td>Foto</td>
-                <td>Rp 30.000</td>
-              </tr>
-              <tr>
-                <th className='text-center'>1</th>
-                <td>Sate Ayam</td>
-                <td>Foto</td>
-                <td>Rp 30.000</td>
-              </tr>
-              <tr>
-                <th className='text-center'>1</th>
-                <td>Sate Ayam</td>
-                <td>Foto</td>
-                <td>Rp 30.000</td>
-              </tr>
-              <tr>
-                <th className='text-center'>1</th>
-                <td>Sate Ayam</td>
-                <td>Foto</td>
-                <td>Rp 30.000</td>
-              </tr>
+              {products.map((product, i) => (
+                <tr key={product.id}>
+                  <th className='text-center'>{ i + 1}</th>
+                  <td>{ product.name }</td>
+                  <td>
+                    <img src={product.image} alt="" width={150} />
+                  </td>
+                  <td>{`Rp. ${product.price}`}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

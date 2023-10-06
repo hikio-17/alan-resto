@@ -14,7 +14,7 @@ const addProduct = async ({ name, image, price }) => {
   return product;
 };
 
-const findAllProduct = () => Product.findAll();
+const findAllProduct = () => Product.findAll({ order: [['createdAt', 'ASC']] });
 
 module.exports = {
   addProduct,

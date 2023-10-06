@@ -1,17 +1,18 @@
 import React from 'react'
 
-const Card = () => {
+const Card = ({ name, image, price, handleOnClick }) => {
   return (
-    <div className='card shadow'>
+    <div className='card shadow' onClick={handleOnClick}>
       <img
-        src='https://upload.wikimedia.org/wikipedia/commons/a/ad/Sate_Ponorogo.jpg'
+        src={image}
         className='card-img-top'
-        alt='...'
+        alt={name}
+        height={150}
       />
       <div className='card-body text-center'>
-        <h5 className='card-title'>Sate Ayam</h5>
+        <h5 className='card-title'>{ name }</h5>
         <p className='card-text'>
-          Rp. 30.000
+          {`Rp. ${price}`}
         </p>
       </div>
     </div>

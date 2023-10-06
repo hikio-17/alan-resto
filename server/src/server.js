@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 
@@ -12,7 +13,7 @@ require('dotenv').config();
 
 /** MIDDLEWARE */
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 /** MAIN ROUTE */
