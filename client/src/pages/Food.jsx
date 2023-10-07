@@ -50,10 +50,10 @@ const Food = () => {
             <tbody>
               {products.map((product, i) => (
                 <tr key={product.id}>
-                  <th className='text-center'>{ i + 1}</th>
+                  <td className='text-center'>{ i + 1}</td>
                   <td>{ product.name }</td>
                   <td>
-                    <img src={product.image} alt="" width={150} />
+                    <img src={product.image} alt="" width={150} height={80} />
                   </td>
                   <td>{`Rp. ${product.price}`}</td>
                 </tr>

@@ -4,9 +4,8 @@
   box-sizing: border-box;
 }
 
-main {
-  background-color: red;
-  height: 90vh;
+body {
+  font-family: monospace;
 }
 
 .navbar {
