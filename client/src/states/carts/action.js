@@ -3,16 +3,27 @@ const ActionType = {
    CLEAR_CARTS: 'CLEAR_CARTS'
 }
 
-function updateCartsActionCreator(productId) {
+function updateCartsAction(product) {
    return {
       type: ActionType.UPDATE_CARTS,
       payload: {
-         productId
+         product
       }
    }
 }
 
+function clearCartsAction() {
+   return {
+      type: ActionType.CLEAR_CARTS
+   }
+}
+
+// function asyncUpdateCartsAction() {
+
+// }
+
 export {
    ActionType,
-   updateCartsActionCreator
+   updateCartsAction,
+   clearCartsAction
 }

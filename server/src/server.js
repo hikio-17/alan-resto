@@ -11,8 +11,12 @@ const db = require('./models');
 const app = express();
 require('dotenv').config();
 
+const corsOptions = {
+  origin: '*',
+};
+
 /** MIDDLEWARE */
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 

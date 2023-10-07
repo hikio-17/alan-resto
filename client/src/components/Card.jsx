@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Card = ({ name, image, price, handleOnClick }) => {
+const Card = ({ product, handleOnClick }) => {
+  const { name, image, price } = product
   return (
-    <div className='card shadow' onClick={handleOnClick}>
+    <div className='card shadow' onClick={() => handleOnClick(product)}>
       <img
         src={image}
         className='card-img-top'

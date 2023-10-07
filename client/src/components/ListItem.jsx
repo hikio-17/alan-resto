@@ -1,20 +1,21 @@
 import React from 'react'
 
-const ListItem = () => {
+const ListItem = ({ product }) => {
+  const { name, count, image, price } = product;
   return (
     <div className='d-flex align-items-center justify-content-between mb-3'>
       <div>
         <img
-          src='https://upload.wikimedia.org/wikipedia/commons/a/ad/Sate_Ponorogo.jpg'
-          alt=''
-          width={100}
+          src={image}
+          alt={name}
+          width={80}
         />
-        <span className='ps-2'>Sate Ayam</span>
+        <span className='ps-1'>{name}</span>
       </div>
 
       <div>
-         <span>x1</span>
-         <span className='ps-3 text-primary'>Rp. 30.000</span>
+         <span>x{ count }</span>
+         <span className='ps-2 text-primary'>Rp. {count * parseInt(price)}</span>
       </div>
     </div>
   )

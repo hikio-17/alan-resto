@@ -1,13 +1,16 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import HeaderApp from './components/HeaderApp'
 import Food from './pages/Food';
 import Transaction from './pages/Transaction';
 import AddMenu from './pages/AddMenu';
+import 'react-toastify/dist/ReactToastify.css'
 
 function App () {
   return (
     <>
+      <ToastContainer />
       <header>
         <HeaderApp />
       </header>
